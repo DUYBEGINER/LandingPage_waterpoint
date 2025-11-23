@@ -4,48 +4,115 @@ import './App.css'
 function App() { 
   const [language, setLanguage] = useState('vi')
   const [activeTab, setActiveTab] = useState('longan')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <div className="min-h-screen relative">
       {/* Header with gradient background */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-blue-900/60 via-blue-800/40 to-transparent backdrop-blur-sm">
-        <div className="max-w-[1600px] mx-auto px-8 py-3">
-          <div className="flex items-center justify-center gap-12">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-blue-900/50  to-blue-900/10 backdrop-blur-sm">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+          {/* Mobile Header */}
+          <div className="flex md:hidden items-center justify-between">
+            <img 
+              src="https://waterpoint.com.vn/storage/images/waterpoint-logo-whitebg-150.png" 
+              alt="Waterpoint Logo" 
+              className="w-16 h-16 object-contain bg-white/90 rounded p-1"
+            />
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-white p-2"
+              aria-label="Menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+
+          {/* Desktop Header */}
+          <div className="hidden md:flex items-center justify-center gap-4 lg:gap-12">
             {/* Left Navigation */}
-           
-              <a href="#" className="text-white text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
-                QUY HOẠCH & TIỆN ÍCH
-              </a>
-              <a href="#" className="text-white text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
-                PHÂN KHU & SẢN PHẨM
-              </a>
-              <a href="#" className="text-white text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
-                TIN TỨC & TIẾN ĐỘ
-              </a>
+            <a href="#" className="text-white text-xs lg:text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
+              QUY HOẠCH & TIỆN ÍCH
+            </a>
+            <a href="#" className="text-white text-xs lg:text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
+              PHÂN KHU & SẢN PHẨM
+            </a>
+            <a href="#" className="text-white text-xs lg:text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
+              TIN TỨC & TIẾN ĐỘ
+            </a>
 
             {/* Center Logo */}
             <div className="flex flex-col items-center">
               <img 
                 src="https://waterpoint.com.vn/storage/images/waterpoint-logo-whitebg-150.png" 
                 alt="Waterpoint Logo" 
-                className="w-24 h-24 object-contain"
+                className="w-20 h-20 lg:w-24 lg:h-24 object-contain"
               />
             </div>
 
             {/* Right Navigation */}
-          
-              <a href="#" className="text-white text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
+            <a href="#" className="text-white text-xs lg:text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
+              TÀI LIỆU & THÔNG BÁO
+            </a>
+            <a href="#" className="text-white text-xs lg:text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
+              CHỦ ĐẦU TƯ
+            </a>
+            <a href="#" className="text-white text-xs lg:text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
+              LIÊN HỆ
+            </a>
+            
+            {/* Language Switcher */}
+            <div className="flex gap-2 ml-2 lg:ml-4">
+              <button 
+                className={`w-8 h-6 rounded overflow-hidden border-2 transition ${
+                  language === 'en' ? 'border-white' : 'border-white/40'
+                }`}
+                onClick={() => setLanguage('en')}
+              >
+                <div className="w-full h-full bg-gradient-to-b from-blue-600 via-white to-red-600"></div>
+              </button>
+              <button 
+                className={`w-8 h-6 rounded overflow-hidden border-2 transition ${
+                  language === 'vi' ? 'border-white' : 'border-white/40'
+                }`}
+                onClick={() => setLanguage('vi')}
+              >
+                <div className="w-full h-full bg-gradient-to-b from-red-600 via-yellow-400 to-red-600 relative">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-yellow-400 text-lg">★</div>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 space-y-3">
+              <a href="#" className="block text-white text-sm font-semibold hover:text-blue-200 transition py-2">
+                QUY HOẠCH & TIỆN ÍCH
+              </a>
+              <a href="#" className="block text-white text-sm font-semibold hover:text-blue-200 transition py-2">
+                PHÂN KHU & SẢN PHẨM
+              </a>
+              <a href="#" className="block text-white text-sm font-semibold hover:text-blue-200 transition py-2">
+                TIN TỨC & TIẾN ĐỘ
+              </a>
+              <a href="#" className="block text-white text-sm font-semibold hover:text-blue-200 transition py-2">
                 TÀI LIỆU & THÔNG BÁO
               </a>
-              <a href="#" className="text-white text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
+              <a href="#" className="block text-white text-sm font-semibold hover:text-blue-200 transition py-2">
                 CHỦ ĐẦU TƯ
               </a>
-              <a href="#" className="text-white text-sm font-semibold hover:text-blue-200 transition whitespace-nowrap">
+              <a href="#" className="block text-white text-sm font-semibold hover:text-blue-200 transition py-2">
                 LIÊN HỆ
               </a>
-              
-              {/* Language Switcher */}
-              <div className="flex gap-2 ml-4">
+              <div className="flex gap-2 pt-2">
                 <button 
                   className={`w-8 h-6 rounded overflow-hidden border-2 transition ${
                     language === 'en' ? 'border-white' : 'border-white/40'
@@ -67,19 +134,19 @@ function App() {
                   </div>
                 </button>
               </div>
-        
-          </div>
+            </div>
+          )}
         </div>
       </header>
 
       {/* Hero Section */}
       <section 
-        className="min-h-screen bg-cover bg-center relative flex items-center"
+        className="h-screen md:min-h-screen bg-cover bg-center relative flex items-center pt-16 md:pt-0"
         style={{
           backgroundImage: 'url(https://waterpoint.com.vn/storage/images/waterpoint-map-tongthe-1920-960-2023.jpg)',
         }}
       >
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/30 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/30 via-transparent to-transparent"></div>
       </section>
 
       {/* Floating Action Buttons */}
@@ -107,13 +174,13 @@ function App() {
       </div> */}
 
       {/* Overview Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-[1200px] mx-auto px-8">
-          <h2 className="text-4xl font-bold text-center text-blue-900 mb-16">
+      <section className="py-12 md:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-900 mb-8 md:mb-16">
             TỔNG QUAN
           </h2>
           
-          <div className="space-y-6 text-gray-700 leading-relaxed">
+          <div className="space-y-4 md:space-y-6 text-sm md:text-base text-gray-700 leading-relaxed">
             <p>
               "Thành phố bên sông" Waterpoint 355ha được biết đến là khu đô thị tích hợp hàng đầu tại của ngõ Tây Nam TP.HCM sở hữu địa thế phong thủy thịnh vượng trên bãi bồi được bao bọc bởi 5,8km sông Vàm Cỏ Đông.
             </p>
@@ -130,9 +197,9 @@ function App() {
       </section>
 
       {/* Planning & Amenities Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-[1920px] mx-auto">
-          <h2 className="text-4xl font-bold text-center text-blue-900 mb-16 px-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-900 mb-8 md:mb-16 px-4 md:px-8">
             QUY HOẠCH & TIỆN ÍCH
           </h2>
           
@@ -147,13 +214,13 @@ function App() {
       </section>
 
       {/* Available Zones Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-4xl font-bold text-center text-blue-900 mb-16">
+      <section className="py-12 md:py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-900 mb-8 md:mb-16">
             PHÂN KHU ĐANG MỞ BÁN
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Park Village */}
             <div className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-lg shadow-lg mb-6">
@@ -200,20 +267,20 @@ function App() {
       </section>
 
       {/* Products Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-4xl font-bold text-center text-blue-900 mb-16">
+      <section className="py-12 md:py-20 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-900 mb-8 md:mb-16">
             SẢN PHẨM ĐANG MỞ BÁN
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Park Village Product */}
             <div className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-lg shadow-lg mb-6">
                 <img 
                   src="https://waterpoint.com.vn/storage/images/home/RI-VC1_1-1-728x409.jpg" 
                   alt="Compound Grand Villa Park Village" 
-                  className="w-full h-[300px] object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-[250px] md:h-[300px] object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/40 transition-all duration-300 flex items-center justify-center">
                   <div className="w-16 h-16 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -223,10 +290,10 @@ function App() {
                   </div>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-blue-900 text-center mb-2">
+              <h3 className="text-xl md:text-2xl font-bold text-blue-900 text-center mb-2">
                 Compound Grand Villa
               </h3>
-              <p className="text-gray-600 text-center">
+              <p className="text-sm md:text-base text-gray-600 text-center">
                 (Kiệt tác Villa phong cách Âu – Park Village )
               </p>
             </div>
@@ -237,7 +304,7 @@ function App() {
                 <img 
                   src="https://waterpoint.com.vn/storage/images/home/canal-580x326.jpg" 
                   alt="Compound Grand Villa The Aqua" 
-                  className="w-full h-[300px] object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-[250px] md:h-[300px] object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/40 transition-all duration-300 flex items-center justify-center">
                   <div className="w-16 h-16 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -247,10 +314,10 @@ function App() {
                   </div>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-blue-900 text-center mb-2">
+              <h3 className="text-xl md:text-2xl font-bold text-blue-900 text-center mb-2">
                 Compound Grand Villa
               </h3>
-              <p className="text-gray-600 text-center">
+              <p className="text-sm md:text-base text-gray-600 text-center">
                 Bồ sưu tập hạng sang - The Aqua
               </p>
             </div>
@@ -259,20 +326,20 @@ function App() {
       </section>
 
       {/* Golden Location Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-4xl font-bold text-center text-blue-900 mb-4">
+      <section className="py-12 md:py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-900 mb-2 md:mb-4">
             "TOẠ ĐỘ VÀNG"
           </h2>
-          <p className="text-2xl text-center text-blue-900 mb-12">
+          <p className="text-lg md:text-xl lg:text-2xl text-center text-blue-900 mb-8 md:mb-12">
             Bến Lức, Long An
           </p>
           
           {/* Tabs */}
-          <div className="flex justify-center mb-12">
-            <div className="grid grid-cols-3 w-full max-w-[1000px] border-2 border-teal-600">
+          <div className="flex justify-center mb-8 md:mb-12 overflow-x-auto">
+            <div className="grid grid-cols-3 w-full max-w-[1000px] border-2 border-teal-600 min-w-[320px]">
               <button 
-                className={`py-4 px-6 font-bold transition-colors ${
+                className={`py-3 md:py-4 px-2 md:px-6 text-xs md:text-sm lg:text-base font-bold transition-colors ${
                   activeTab === 'longan' 
                     ? 'bg-teal-600 text-white' 
                     : 'bg-white text-teal-600 hover:bg-teal-50'
@@ -282,24 +349,26 @@ function App() {
                 LONG AN
               </button>
               <button 
-                className={`py-4 px-6 font-bold transition-colors border-x-2 border-teal-600 ${
+                className={`py-3 md:py-4 px-2 md:px-6 text-xs md:text-sm lg:text-base font-bold transition-colors border-x-2 border-teal-600 ${
                   activeTab === 'giaothongduongbo' 
                     ? 'bg-teal-600 text-white' 
                     : 'bg-white text-teal-600 hover:bg-teal-50'
                 }`}
                 onClick={() => setActiveTab('giaothongduongbo')}
               >
-                GIAO THÔNG ĐƯỜNG BỘ
+                <span className="hidden md:inline">GIAO THÔNG ĐƯỜNG BỘ</span>
+                <span className="md:hidden">GT ĐƯỜNG BỘ</span>
               </button>
               <button 
-                className={`py-4 px-6 font-bold transition-colors ${
+                className={`py-3 md:py-4 px-2 md:px-6 text-xs md:text-sm lg:text-base font-bold transition-colors ${
                   activeTab === 'giaothongduongthuy' 
                     ? 'bg-teal-600 text-white' 
                     : 'bg-white text-teal-600 hover:bg-teal-50'
                 }`}
                 onClick={() => setActiveTab('giaothongduongthuy')}
               >
-                GIAO THÔNG ĐƯỜNG THỦY
+                <span className="hidden md:inline">GIAO THÔNG ĐƯỜNG THỦY</span>
+                <span className="md:hidden">GT ĐTHỦY</span>
               </button>
             </div>
           </div>
@@ -437,21 +506,21 @@ function App() {
       </section>
 
       {/* Sustainable Community Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-4xl font-bold text-center text-blue-900 mb-8">
+      <section className="py-12 md:py-20 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-blue-900 mb-6 md:mb-8">
             THIÊN NHIÊN HÀI HOÀ, CỘNG ĐỒNG BỀN VỮNG
           </h2>
           
-          <div className="text-center max-w-[900px] mx-auto mb-12 text-gray-700 leading-relaxed">
+          <div className="text-center max-w-[900px] mx-auto mb-8 md:mb-12 text-sm md:text-base text-gray-700 leading-relaxed">
             <p>
-              Waterpoint là một thành phố vườn khí, êm ả và hạnh phúc. Sống nơi đây là sống tận hưởng trọn vẹn giữa miền thiên nhiên an lành bên dòng sông hiền hòa; là ấm áp những phút giây sum vầy, an yên của ông bà bên con cháu yêu thương; là chốn trở về thanh bình; là nơi trường tồn bởi những trải nghiệm đắc biệt của chỉ cộng đồng thân thiện Waterpoint ...;
+              Waterpoint là một thành phố vườn khí, êm ả và hạnh phúc. Sống nơi đây là sống tận hưởng trọn vẹn giữa miền thiên nhiên an lành bên dòng sông hiền hoà; là ấm áp những phút giây sum vầy, an yên của ông bà bên con cháu yêu thương; là chốn trở về thanh bình; là nơi trường tồn bởi những trải nghiệm đắc biệt của chỉ cộng đồng thân thiện Waterpoint ...;
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {/* Card 1 - Bức tranh thiên nhiên hài hoà */}
-            <div className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer h-[500px]">
+            <div className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer h-[400px] md:h-[500px]">
               <img 
                 src="https://waterpoint.com.vn/storage/images/Artboard-%E2%80%93-7.png" 
                 alt="Bức tranh thiên nhiên hài hoà" 
@@ -526,19 +595,28 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="relative bg-[#062943] bg-[url(https://waterpoint.com.vn/theme/images/footer-decord.png)] bg-fit bg-no-repeat  mt-20 text-white overflow-hidden">
+      <footer className="relative bg-gradient-to-b from-blue-900 to-blue-950 text-white py-12 md:py-16 mt-12 md:mt-20">
         {/* Background Pattern Overlay */}
-       
-        <div className="relative max-w-[1400px] mx-auto px-8 mt-16">
-          <div className="grid md:grid-cols-4 gap-12">
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'url(https://waterpoint.com.vn/theme/images/footer-decord.png)',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover'
+          }}
+        ></div>
+
+        <div className="relative max-w-[1400px] mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {/* Column 1 - Logo & Company Info */}
             <div>
               <img 
                 src="https://waterpoint.com.vn/storage/images/waterpoint-logo-whitebg-150.png" 
                 alt="Waterpoint Logo" 
-                className="w-32 mb-6  p-2 rounded"
+                className="w-24 md:w-32 mb-4 md:mb-6 bg-white p-2 rounded"
               />
-              <div className="space-y-3 text-sm">
+              <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
                 <p className="font-semibold">Trụ sở</p>
                 <p>CÔNG TY CP ĐẦU TƯ NAM LONG</p>
                 <p>06 Nguyễn Khắc Viện, Phường Tân Mỹ, TP. HCM</p>
@@ -551,7 +629,7 @@ function App() {
 
             {/* Column 2 - Quick Links */}
             <div>
-              <div className="space-y-3">
+              <div className="space-y-2 md:space-y-3 text-xs md:text-sm">
                 <a href="#" className="block hover:text-teal-400 transition">QUY HOẠCH TỔNG THỂ</a>
                 <a href="#" className="block hover:text-teal-400 transition">TIỆN ÍCH</a>
                 <a href="#" className="block hover:text-teal-400 transition">DỰ ÁN</a>
@@ -564,17 +642,17 @@ function App() {
 
             {/* Column 3 - Empty or Additional Info */}
             <div>
-              <p className="italic text-sm opacity-90">
+              <p className="italic text-xs md:text-sm opacity-90">
                 ĐÂY LÀ TRANG THÔNG TIN CHÍNH THỨC TỪ CHỦ ĐẦU TƯ DỰ ÁN WATERPOINT.
               </p>
-              <p className="text-sm mt-4 opacity-80">
+              <p className="text-xs md:text-sm mt-3 md:mt-4 opacity-80">
                 Thông tin, hình ảnh, các tiện ích trên website chỉ mang tính chất tương đối và có thể được điều chỉnh theo quyết định của chủ đầu tư.
               </p>
             </div>
 
             {/* Column 4 - Social Media */}
             <div>
-              <div className="flex gap-4">
+              <div className="flex gap-3 md:gap-4">
                 <a href="#" className="w-10 h-10 bg-white/10 hover:bg-teal-500 rounded-full flex items-center justify-center transition">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -595,13 +673,13 @@ function App() {
           </div>
 
           {/* Copyright */}
-          <div className=" text-center">
-            <p className="text-sm text-teal-400">All Rights Reserved 2023 © Nam Long Group</p>
-            <div className="mt-4">
+          <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/10 text-center">
+            <p className="text-xs md:text-sm text-teal-400">All Rights Reserved 2023 © Nam Long Group</p>
+            <div className="mt-3 md:mt-4">
               <img 
                 src="https://waterpoint.com.vn/theme/images/dmca-badge-w150-5x1-09.png" 
                 alt="DMCA Protected" 
-                className="inline-block h-8"
+                className="inline-block h-6 md:h-8"
               />
             </div>
           </div>
