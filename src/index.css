@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rosario:ital,wght@0,300..700;1,300..700&family=Sekuya&display=swap');
 @import "tailwindcss";
 :root {
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+}
+
+@theme{
+  --font-display: Rosario, "AXtManalBold Regular", Helvetica, Arial, "Microsoft Yahei", "PingFang SC", "PingFang TC", "PingFang HK", "Hiragino Sans", sans-serif;
+  --font-niramit: Niramit, "AXtManalBold Regular", Helvetica, Arial, "Microsoft Yahei", "PingFang SC", "PingFang TC", "PingFang HK", "Hiragino Sans", sans-serif;
 }
 
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 #root {
