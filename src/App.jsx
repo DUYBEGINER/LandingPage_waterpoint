@@ -18,10 +18,9 @@ function App() {
       <Content1 />
       <Content2 />
       {/* <Content3 /> */}
-      <Content4 url="https://www.banyantree.com/_next/image?url=https%3A%2F%2Fwww.banyantree.com%2Fassets%2F2025-02%2Fbt-langco-Banyan%20Tree%20Lang%20Co%20-%20Resort%20Overview.jpg&w=3840&q=65"/>
-      <Content4 url="ANH2.jpg"/>
-      <Content4 url="https://www.banyantree.com/_next/image?url=https%3A%2F%2Fwww.banyantree.com%2Fassets%2F2025-02%2Fbt-langco-Banyan%20Tree%20Lang%20Co%20-%20Resort%20Overview.jpg&w=3840&q=65"/>
-      <Content4 url="ANH2.jpg"/>
+      <Content4 alt="Phố Thị Nại" title="Phố Thị Nại" subtitle="Sắc màu thương mại ven đầm" url="Picture1.png"/>
+      <Content4 alt="Nhà Rường Thị Nại" title="Nhà Rường Thị Nại" subtitle="Làng sinh thái xanh Thị Nại" url="Picture2.png"/>
+      <Content4 alt="Công viên Phố Cảng Đầm Xanh" title="Công viên Phố Cảng Đầm Xanh" subtitle="Tổ hợp thương mại – giáo dục sinh thái tiên phong, tọa lạc tại trái tim của Đầm Thị Nại" url="Picture3.png"/>
       {/* <Content4 />
       <Content4 /> */}
       {/* <Content5 /> */}

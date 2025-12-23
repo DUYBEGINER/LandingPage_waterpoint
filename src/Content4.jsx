@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 function Content4(props) {
   const [offsetY, setOffsetY] = useState(0);
   const sectionRef = useRef(null);
-  const url = props.url;
+  const {url, alts, title, subtitle} = props;
   useEffect(() => {
     const handleScroll = () => {
       if (sectionRef.current) {
@@ -30,23 +30,23 @@ function Content4(props) {
       >
         <img
           src={url}
-          alt="Biệt Thự"
-          className="w-full h-full object-cover"
+          alt={alts}
+          className="w-full h-full object-fit"
         />
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
       </div>
 
       {/* Content Overlay */}
       <div className="relative h-full flex flex-col items-center justify-center text-white px-4">
         {/* Main Title */}
-        <h1 className="text-xl md:text-4xl lg:text-5xl font-light tracking-[0.3em] text-center mb-8 drop-shadow-lg">
-          BIỆT THỰ
+        <h1 className="text-xl md:text-4xl lg:text-5xl font-bold tracking-[0.3em] text-center mb-8 drop-shadow-lg">
+          {title}
         </h1>
 
         {/* Subtitle */}
         <p className="text-base md:text-lg lg:text-xl font-light max-w-4xl text-center mb-12 drop-shadow-md px-4">
-          Trải nghiệm những căn biệt thự sang trọng với hồ bơi riêng và không gian sống rộng rãi.
+          {subtitle}
         </p>
 
         {/* CTA Button */}
